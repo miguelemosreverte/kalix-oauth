@@ -70,8 +70,13 @@ app.use((req, res, next) => {
 
     createCustomer(req.oidc.user);
     req.session.customerCreated = true;  // Set a flag in the session
-    res.locals.user = req.oidc.user;
   }
+  next();
+});
+
+// Middleware to make the `user` object available for all views
+app.use(function (req, res, next) {
+  res.locals.user = req.oidc.user;
   next();
 });
 
