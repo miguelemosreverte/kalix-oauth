@@ -69,7 +69,7 @@ This project demonstrates integration between a Node.js application using OAuth 
 
 When you start and interact with the Node.js OAuth application and the Kalix service, the logs will look like this:
 
-    ```plaintext
+    
     npm start
 
     > start
@@ -93,11 +93,11 @@ When you start and interact with the Node.js OAuth application and the Kalix ser
     Executing command: grpcurl -plaintext -d '{"customer_id":"auth0%7C664fcd425d4b3faeb54905c7","email":"miguellemos95@gmail.com","name":"miguellemos95@gmail.com","address":{"street":"userDetails.address.street","city":"userDetails.address.city"}}' localhost:9000 customer.api.CustomerService/Create
     GET / 200 12.691 ms - 2672
     Execution Stdout: {}
-    ```
+    
 
    You can check the user has been registered to Kalix using the following command:
 
-    ```plaintext
+    
     grpcurl -d '{"customer_id": "auth0%7C664fcd425d4b3faeb54905c7"}' --plaintext localhost:9000 customer.api.CustomerService/GetCustomer
     {
       "customerId": "auth0%7C664fcd425d4b3faeb54905c7",
@@ -108,7 +108,7 @@ When you start and interact with the Node.js OAuth application and the Kalix ser
         "city": "userDetails.address.city"
       }
     }
-    ```
+    
 
 ## Important Notes
 
