@@ -4,6 +4,8 @@ Sure! Below is a concise `README.md` for your project that outlines the steps ne
 
 ### README.md
 
+![demostration](https://github.com/miguelemosreverte/kalix-oauth/assets/9152392/f85653ad-cd9b-426f-9e89-ea56dfd7e16a)
+
 ```markdown
 # Project Name
 
