@@ -1,9 +1,5 @@
 # kalix-oauth
 
-Sure! Below is a concise `README.md` for your project that outlines the steps necessary to get both the Kalix service and the OAuth service running, as well as how to verify that everything is working as intended.
-
-### README.md
-
 ![demostration](https://github.com/miguelemosreverte/kalix-oauth/assets/9152392/f85653ad-cd9b-426f-9e89-ea56dfd7e16a)
 
 ```markdown
