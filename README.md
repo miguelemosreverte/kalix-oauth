@@ -1,9 +1,9 @@
-# kalix-oauth
+
 
 ![demostration](https://github.com/miguelemosreverte/kalix-oauth/assets/9152392/f85653ad-cd9b-426f-9e89-ea56dfd7e16a)
 
 
-# Project Name
+# kalix-oauth
 
 This project demonstrates integration between a Node.js application using OAuth for authentication and a Kalix service managing customer records.
 
