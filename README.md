@@ -72,6 +72,12 @@ Sure, I'll help you format this section of your README.md for better readability
 
 When you start and interact with the Node.js OAuth application and the Kalix service, the logs will look like this:
 
+Sure, I'll help you format this section of your README.md for better readability. Proper indentation and markdown usage should make it render nicely.
+
+### Application Logs Overview
+
+When you start and interact with the Node.js OAuth application and the Kalix service, the logs will look like this:
+
 1. **Login through the web interface at `http://localhost:3000`.**
    Use your Google account to log in. Upon successful login, the application logs will display the user's profile information and confirm registration with the Kalix service.
 
