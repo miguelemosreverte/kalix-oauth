@@ -66,49 +66,56 @@ This project demonstrates integration between a Node.js application using OAuth 
    Upon starting, you should see logs indicating that the server is listening on `http://localhost:3000`. Follow the URL to interact with the application.
 
 ### Interacting with the Application
+Sure, I'll help you format this section of your README.md for better readability. Proper indentation and markdown usage should make it render nicely.
+
+### Application Logs Overview
+
+When you start and interact with the Node.js OAuth application and the Kalix service, the logs will look like this:
 
 1. **Login through the web interface at `http://localhost:3000`.**
    Use your Google account to log in. Upon successful login, the application logs will display the user's profile information and confirm registration with the Kalix service.
+
    Example logs:
+
     ```plaintext
-        npm start
+    npm start
 
-        > start
-        > node server.js
+    > start
+    > node server.js
 
-        Using 'form_post' for response_mode may cause issues for you logging in over http, see https://github.com/auth0/express-openid-connect/blob/master/FAQ.md
-        Listening on http://localhost:3000
-        GET /login 302 95.226 ms - 754
-        POST /callback 302 294.176 ms - 86
-        Registering user
-        {
-        sid: 'mFzbI40gw4ME_jZbDhr7T0KU6xx4WueR',
-        nickname: 'miguellemos95',
-        name: 'miguellemos95@gmail.com',
-        picture: 'https://s.gravatar.com/avatar/249f08c87747e539cbb4e4251d907ef2?s=480&r=pg&d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Fmi.png',
-        updated_at: '2024-05-24T01:26:53.984Z',
-        email: 'miguellemos95@gmail.com',
-        email_verified: true,
-        sub: 'auth0|664fcd425d4b3faeb54905c7'
-        }
-        Executing command: grpcurl -plaintext -d '{"customer_id":"auth0%7C664fcd425d4b3faeb54905c7","email":"miguellemos95@gmail.com","name":"miguellemos95@gmail.com","address":{"street":"userDetails.address.street","city":"userDetails.address.city"}}' localhost:9000 customer.api.CustomerService/Create
-        GET / 200 12.691 ms - 2672
-        Execution Stdout: {}
-        ```
+    Using 'form_post' for response_mode may cause issues for you logging in over http, see https://github.com/auth0/express-openid-connect/blob/master/FAQ.md
+    Listening on http://localhost:3000
+    GET /login 302 95.226 ms - 754
+    POST /callback 302 294.176 ms - 86
+    Registering user
+    {
+      sid: 'mFzbI40gw4ME_jZbDhr7T0KU6xx4WueR',
+      nickname: 'miguellemos95',
+      name: 'miguellemos95@gmail.com',
+      picture: 'https://s.gravatar.com/avatar/249f08c87747e539cbb4e4251d907ef2?s=480&r=pg&d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Fmi.png',
+      updated_at: '2024-05-24T01:26:53.984Z',
+      email: 'miguellemos95@gmail.com',
+      email_verified: true,
+      sub: 'auth0|664fcd425d4b3faeb54905c7'
+    }
+    Executing command: grpcurl -plaintext -d '{"customer_id":"auth0%7C664fcd425d4b3faeb54905c7","email":"miguellemos95@gmail.com","name":"miguellemos95@gmail.com","address":{"street":"userDetails.address.street","city":"userDetails.address.city"}}' localhost:9000 customer.api.CustomerService/Create
+    GET / 200 12.691 ms - 2672
+    Execution Stdout: {}
+    ```
 
-        You can check the user has been registered to Kalix using the following command:
+   You can check the user has been registered to Kalix using the following command:
 
-        ```plaintext
-        grpcurl -d '{"customer_id": "auth0%7C664fcd425d4b3faeb54905c7"}' --plaintext localhost:9000 customer.api.CustomerService/GetCustomer
-        {
-        "customerId": "auth0%7C664fcd425d4b3faeb54905c7",
-        "email": "miguellemos95@gmail.com",
-        "name": "miguellemos95@gmail.com",
-        "address": {
-            "street": "userDetails.address.street",
-            "city": "userDetails.address.city"
-        }
-        }
+    ```plaintext
+    grpcurl -d '{"customer_id": "auth0%7C664fcd425d4b3faeb54905c7"}' --plaintext localhost:9000 customer.api.CustomerService/GetCustomer
+    {
+      "customerId": "auth0%7C664fcd425d4b3faeb54905c7",
+      "email": "miguellemos95@gmail.com",
+      "name": "miguellemos95@gmail.com",
+      "address": {
+        "street": "userDetails.address.street",
+        "city": "userDetails.address.city"
+      }
+    }
     ```
 2. **Verify user registration with Kalix:**
    Use the following `grpcurl` command to verify that the user's details are registered in the Kalix service:
