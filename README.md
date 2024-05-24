@@ -65,14 +65,6 @@ This project demonstrates integration between a Node.js application using OAuth 
 
    Upon starting, you should see logs indicating that the server is listening on `http://localhost:3000`. Follow the URL to interact with the application.
 
-### Interacting with the Application
-Sure, I'll help you format this section of your README.md for better readability. Proper indentation and markdown usage should make it render nicely.
-
-### Application Logs Overview
-
-When you start and interact with the Node.js OAuth application and the Kalix service, the logs will look like this:
-
-Sure, I'll help you format this section of your README.md for better readability. Proper indentation and markdown usage should make it render nicely.
 
 ### Application Logs Overview
 
@@ -118,7 +110,7 @@ When you start and interact with the Node.js OAuth application and the Kalix ser
       }
     }
     ```
-    
+
 ## Important Notes
 
 - **Data Security:** Ensure that `.env` files and sensitive configurations are not uploaded to version control.
