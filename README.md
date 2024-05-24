@@ -2,7 +2,7 @@
 
 ![demostration](https://github.com/miguelemosreverte/kalix-oauth/assets/9152392/f85653ad-cd9b-426f-9e89-ea56dfd7e16a)
 
-```markdown
+
 # Project Name
 
 This project demonstrates integration between a Node.js application using OAuth for authentication and a Kalix service managing customer records.
@@ -119,6 +119,3 @@ When you start and interact with the Node.js OAuth application and the Kalix ser
 - If you encounter issues with `grpcurl` commands, ensure that your command syntax is correct and that `grpcurl` is properly installed and configured on your system.
 - Check Docker and Node.js logs for any error messages that may indicate what went wrong.
 
-```
-
-This README provides a straightforward guide on how to set up, run, and interact with your application, along with how to verify that everything is functioning correctly. Adjust the paths and any specific commands according to your actual project setup if they differ.
