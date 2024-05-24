@@ -1,12 +1,12 @@
 
 
 
-# kalix-oauth
+# kalix+openid
 
 
 ![demostration](https://github.com/miguelemosreverte/kalix-oauth/assets/9152392/f85653ad-cd9b-426f-9e89-ea56dfd7e16a)
 
-This project demonstrates integration between a Node.js application using OAuth for authentication and a Kalix service managing customer records.
+This project demonstrates integration between a Node.js application using Auth0 for authentication and a Kalix service managing customer records.
 
 ## Prerequisites
 
@@ -45,11 +45,11 @@ This project demonstrates integration between a Node.js application using OAuth 
    npm start
    ```
 
-### OAuth Node.js Application
+### auth0 Node.js Application
 
-1. **Navigate to the OAuth application directory:**
+1. **Navigate to the auth0 application directory:**
    ```bash
-   cd oauth/login
+   cd auth0/login
    ```
 
 2. **Install dependencies:**
@@ -67,7 +67,7 @@ This project demonstrates integration between a Node.js application using OAuth 
 
 ### Application Logs Overview
 
-When you start and interact with the Node.js OAuth application and the Kalix service, the logs will look like this:
+When you start and interact with the Node.js auth0 application and the Kalix service, the logs will look like this:
 
     
     npm start
