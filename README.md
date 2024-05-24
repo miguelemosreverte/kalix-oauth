@@ -78,11 +78,6 @@ Sure, I'll help you format this section of your README.md for better readability
 
 When you start and interact with the Node.js OAuth application and the Kalix service, the logs will look like this:
 
-1. **Login through the web interface at `http://localhost:3000`.**
-   Use your Google account to log in. Upon successful login, the application logs will display the user's profile information and confirm registration with the Kalix service.
-
-   Example logs:
-
     ```plaintext
     npm start
 
@@ -123,13 +118,7 @@ When you start and interact with the Node.js OAuth application and the Kalix ser
       }
     }
     ```
-2. **Verify user registration with Kalix:**
-   Use the following `grpcurl` command to verify that the user's details are registered in the Kalix service:
-   ```bash
-   grpcurl -d '{"customer_id": "auth0%7C664fcd425d4b3faeb54905c7"}' --plaintext localhost:9000 customer.api.CustomerService/GetCustomer
-   ```
-   The command should return the user details as stored by the Kalix service.
-
+    
 ## Important Notes
 
 - **Data Security:** Ensure that `.env` files and sensitive configurations are not uploaded to version control.
