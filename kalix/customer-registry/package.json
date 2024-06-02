@@ -9,6 +9,9 @@
   "dependencies": {
     "@kalix-io/kalix-javascript-sdk": "1.1.0",
     "escodegen": "^1.14.3",
+    "express": "^4.19.2",
+    "morgan": "^1.10.0",
+    "path": "^0.12.7",
     "semver": "^7.6.2",
     "uglify-js": "^3.17.4"
   },

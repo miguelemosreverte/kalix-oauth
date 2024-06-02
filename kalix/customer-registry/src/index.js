@@ -1,29 +1,37 @@
-/*
- * Copyright 2021-2023 Lightbend Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 import { Kalix } from "@kalix-io/kalix-javascript-sdk";
 import generatedComponents from "../lib/generated/index.js";
+import express from 'express';
+import http from 'http';
+import logger from 'morgan';
+import path from 'path';
 
-const server = new Kalix();
+const kalixServer = new Kalix();
+const app = express();
 
 // This generatedComponents array contains all generated Actions, Views or Entities,
 // and is kept up-to-date with any changes in your protobuf definitions.
 // If you prefer, you may remove this line and manually register these components.
 generatedComponents.forEach((component) => {
-  server.addComponent(component);
+  kalixServer.addComponent(component);
 });
 
-server.start();
+app.use(logger('dev'));
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.json());
+
+// Simple "Hello World" route
+app.get('/', (req, res) => {
+  res.send('<h1>Hello World</h1>');
+});
+
+const expressServer = http.createServer(app);
+const port = process.env.PORT || 3000;
+
+expressServer.listen(port, () => {
+  console.log(`Express server listening on http://localhost:${port}`);
+});
+
+// Start Kalix server on a different port
+kalixServer.start({
+  httpPort: 9000
+});

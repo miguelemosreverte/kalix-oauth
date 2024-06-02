@@ -120,3 +120,7 @@ When you start and interact with the Node.js auth0 application and the Kalix ser
 - If you encounter issues with `grpcurl` commands, ensure that your command syntax is correct and that `grpcurl` is properly installed and configured on your system.
 - Check Docker and Node.js logs for any error messages that may indicate what went wrong.
 
+## Auth0 JWT | [documentation](https://www.kalix.io/developer/blog/integrating-kalix-and-auth0-using-jwts)
+
+- fetched .pem file from https://dev-hrbmijutnc83oxoe.us.auth0.com/pem
+ ![Screenshot 2024-05-24 at 04 21 43](https://github.com/miguelemosreverte/kalix-openid/assets/9152392/9601321f-26aa-4d4f-8265-1c2941551b9a)
