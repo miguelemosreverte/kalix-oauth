@@ -6,8 +6,14 @@ import play.api.libs.json._
 object JwtUtil {
   val secretKey = "your_secret_key"
 
-  def createToken(customerId: String): String = {
+  /*def createToken(customerId: String): String = {
     val claim = Json.obj("customerId" -> customerId)
+    JwtJson.encode(claim, secretKey, JwtAlgorithm.HS256)
+  } */
+
+  def createToken(customerId: String): String = {
+    // Create the claim with the `sub` field set to the customerId
+    val claim = Json.obj("sub" -> customerId)
     JwtJson.encode(claim, secretKey, JwtAlgorithm.HS256)
   }
 
