@@ -18,24 +18,20 @@ class Customer(context: ValueEntityContext) extends AbstractCustomer {
   }
 
   override def getCustomer(currentState: CustomerState, getCustomerRequest: api.GetCustomerRequest): ValueEntity.Effect[api.Customer] = {
-     if (authenticated(currentState.customerId))
-      effects.reply(convertToApi(currentState))
-     else effects.error("Unauthorized")
-
+    if (!authenticated(currentState.customerId)) return effects.error("Unauthorized")
+    effects.reply(convertToApi(currentState))
   }
 
   override def changeName(currentState: CustomerState, changeNameRequest: api.ChangeNameRequest): ValueEntity.Effect[Empty] = {
-    if (authenticated(currentState.customerId))
+    if (!authenticated(currentState.customerId)) return effects.error("Unauthorized")
      effects.updateState(currentState.copy(name = changeNameRequest.newName))
      .thenReply(Empty.defaultInstance)
-    else effects.error("Unauthorized")
   }
 
   override def changeAddress(currentState: CustomerState, changeAddressRequest: api.ChangeAddressRequest): ValueEntity.Effect[Empty] = {
-    if (authenticated(currentState.customerId))
+    if (!authenticated(currentState.customerId)) return effects.error("Unauthorized")
      effects.updateState(currentState.copy(address = changeAddressRequest.newAddress.map(convertToDomain)))
      .thenReply(Empty.defaultInstance)
-    else effects.error("Unauthorized")
   }
 
   def convertToDomain(customer: api.Customer): CustomerState =
