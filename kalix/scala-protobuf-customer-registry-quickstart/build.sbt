@@ -51,3 +51,5 @@ run / fork := true
 Global / cancelable := false // ctrl-c
 
 libraryDependencies ++= Seq("org.scalatest" %% "scalatest" % "3.2.12" % Test)
+libraryDependencies += "com.github.jwt-scala" %% "jwt-play-json" % "10.0.1"
+

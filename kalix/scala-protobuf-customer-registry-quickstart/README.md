@@ -39,13 +39,16 @@ With both the Kalix Runtime and your service running, any defined endpoints shou
 * Create a customer with:
 
 ```shell
-grpcurl --plaintext -d '{"customer_id": "wip", "email": "wip@example.com", "name": "Very Important", "address": {"street": "Road 1", "city": "The Capital"}}' localhost:9000  customer.api.CustomerService/Create
+grpcurl --plaintext -d '{"customer_id": "wip", "email": "wip@example.com", "name": "Very Important", "address": {"street": "Road 1", "city": "The Capital"}}' localhost:9000 customer.api.CustomerService/Create
 ```
+> {
+"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjdXN0b21lcklkIjoid2lwIn0.dbncor4CviWPTA1119FDsk6PHLWX4dG_jsRRecPiOhM"
+}
 
 * Retrieve the customer:
 
 ```shell
-grpcurl --plaintext -d '{"customer_id": "wip"}' localhost:9000  customer.api.CustomerService/GetCustomer
+grpcurl --plaintext -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjdXN0b21lcklkIjoid2lwIn0.dbncor4CviWPTA1119FDsk6PHLWX4dG_jsRRecPiOhM" -d '{"customer_id": "wip", "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjdXN0b21lcklkIjoid2lwIn0.dbncor4CviWPTA1119FDsk6PHLWX4dG_jsRRecPiOhM"}' localhost:9000 customer.api.CustomerService/GetCustomer
 ```
 
 * Query by name:
