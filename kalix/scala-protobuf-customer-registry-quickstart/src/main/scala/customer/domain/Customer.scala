@@ -17,22 +17,25 @@ class Customer(context: ValueEntityContext) extends AbstractCustomer {
     effects.updateState(state).thenReply(api.CreateCustomerResponse(token))
   }
 
-
   override def getCustomer(currentState: CustomerState, getCustomerRequest: api.GetCustomerRequest): ValueEntity.Effect[api.Customer] = {
+     if (authenticated(currentState.customerId))
+      effects.reply(convertToApi(currentState))
+     else effects.error("Unauthorized")
 
-    val asMap = commandContext().metadata.jwtClaims.asMap
-    println(s"metadata.jwtClaims asMap was ${asMap}")
-    val authToken = commandContext().metadata.jwtClaims.subject
-    println(s"subject was ${authToken} customerId was ${currentState.customerId} command.commandId was ${commandContext().commandId}")
-    authToken match {
-      case Some(customerId) if customerId == currentState.customerId =>
-        if (currentState.customerId == "") {
-          effects.error(s"Customer ${getCustomerRequest.customerId} has not been created.")
-        } else {
-          effects.reply(convertToApi(currentState))
-        }
-      case _ => effects.error("Unauthorized")
-    }
+  }
+
+  override def changeName(currentState: CustomerState, changeNameRequest: api.ChangeNameRequest): ValueEntity.Effect[Empty] = {
+    if (authenticated(currentState.customerId))
+     effects.updateState(currentState.copy(name = changeNameRequest.newName))
+     .thenReply(Empty.defaultInstance)
+    else effects.error("Unauthorized")
+  }
+
+  override def changeAddress(currentState: CustomerState, changeAddressRequest: api.ChangeAddressRequest): ValueEntity.Effect[Empty] = {
+    if (authenticated(currentState.customerId))
+     effects.updateState(currentState.copy(address = changeAddressRequest.newAddress.map(convertToDomain)))
+     .thenReply(Empty.defaultInstance)
+    else effects.error("Unauthorized")
   }
 
   def convertToDomain(customer: api.Customer): CustomerState =
@@ -57,22 +60,7 @@ class Customer(context: ValueEntityContext) extends AbstractCustomer {
       address = customer.address.map(address => api.Address(address.street, address.city))
     )
 
-  override def changeName(currentState: CustomerState, changeNameRequest: api.ChangeNameRequest): ValueEntity.Effect[Empty] = {
-    val authToken = commandContext().metadata.jwtClaims.subject
-    authToken match {
-      case Some(customerId) if customerId == currentState.customerId =>
-        effects.updateState(currentState.copy(name = changeNameRequest.newName)).thenReply(Empty.defaultInstance)
-      case _ => effects.error("Unauthorized")
-    }
-  }
-
-  override def changeAddress(currentState: CustomerState, changeAddressRequest: api.ChangeAddressRequest): ValueEntity.Effect[Empty] = {
-    val authToken = commandContext().metadata.jwtClaims.subject
-    authToken match {
-      case Some(customerId) if customerId == currentState.customerId =>
-        effects.updateState(currentState.copy(address = changeAddressRequest.newAddress.map(convertToDomain)))
-          .thenReply(Empty.defaultInstance)
-      case _ => effects.error("Unauthorized")
-    }
-  }
+  private def jwtCustomerId = commandContext().metadata.jwtClaims.subject.getOrElse("")
+  private def authenticated(customerId: String): Boolean =
+    jwtCustomerId == customerId
 }
