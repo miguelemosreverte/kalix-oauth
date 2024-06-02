@@ -45,10 +45,25 @@ grpcurl --plaintext -d '{"customer_id": "wip", "email": "wip@example.com", "name
 "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjdXN0b21lcklkIjoid2lwIn0.dbncor4CviWPTA1119FDsk6PHLWX4dG_jsRRecPiOhM"
 }
 
-* Retrieve the customer:
+* Retrieve the customer using the token:
 
 ```shell
-grpcurl --plaintext -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjdXN0b21lcklkIjoid2lwIn0.dbncor4CviWPTA1119FDsk6PHLWX4dG_jsRRecPiOhM" -d '{"customer_id": "wip", "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjdXN0b21lcklkIjoid2lwIn0.dbncor4CviWPTA1119FDsk6PHLWX4dG_jsRRecPiOhM"}' localhost:9000 customer.api.CustomerService/GetCustomer
+ grpcurl --plaintext -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjdXN0b21lcklkIjoid2lwIn0.dbncor4CviWPTA1119FDsk6PHLWX4dG_jsRRecPiOhM" -d '{"customer_id": "wip"}' localhost:9000 customer.api.CustomerService/GetCustomer
+```
+
+* Then create a second customer with:
+
+```shell
+grpcurl --plaintext -d '{"customer_id": "wip2", "email": "wip2@example.com", "name": "Very Important", "address": {"street": "Road 1", "city": "The Capital"}}' localhost:9000 customer.api.CustomerService/Create  
+```
+> {
+"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjdXN0b21lcklkIjoid2lwMiJ9.g_s8_ABqIGradNdDiXM8C9_x6WL6OiaHcSEi91ec0gU"
+}
+
+* Retrieve the second customer using the same token from first customer:
+
+```shell
+ grpcurl --plaintext -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjdXN0b21lcklkIjoid2lwIn0.dbncor4CviWPTA1119FDsk6PHLWX4dG_jsRRecPiOhM" -d '{"customer_id": "wip2"}' localhost:9000 customer.api.CustomerService/GetCustomer
 ```
 
 * Query by name:
