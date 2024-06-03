@@ -20,11 +20,11 @@ This document outlines the issues encountered during the setup and deployment of
 **Issue:**
 - Error encountered when trying to configure JWT validation for the Kalix service:
   ```
-Error reported from Kalix system: KLX-00711 Method [customer.api.CustomerService.GetCustomer] configured to validate a JWT token, however this service has not been configured for JWT validation.
-
-A Kalix Service must have one or more JWT validation secrets configured in order to validate JWT tokens.
-
-See documentation: https://docs.kalix.io/java-protobuf/using-jwts.html
+    Error reported from Kalix system: KLX-00711 Method [customer.api.CustomerService.GetCustomer] configured to validate a JWT token, however this service has not been configured for JWT validation.
+    
+    A Kalix Service must have one or more JWT validation secrets configured in order to validate JWT tokens.
+    
+    See documentation: https://docs.kalix.io/java-protobuf/using-jwts.html
   ```
 
 **Attempted Solution:**
