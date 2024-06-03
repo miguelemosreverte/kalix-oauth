@@ -39,7 +39,7 @@ With both the Kalix Runtime and your service running, any defined endpoints shou
 * Create a customer with:
 
 ```shell
-grpcurl --plaintext -d '{"customer_id": "wip", "email": "wip@example.com", "name": "Very Important", "address": {"street": "Road 1", "city": "The Capital"}}' localhost:9000 customer.api.CustomerService/Create
+grpcurl --plaintext -d '{"customer_id": "wip", "email": "wip@example.com", "name": "Very Important", "address": {"street": "Road 1", "city": "The Capital"}}' purple-flower-1819.us-east1.kalix.app:9000 customer.api.CustomerService/Create
 ```
 > {
 "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjdXN0b21lcklkIjoid2lwIn0.dbncor4CviWPTA1119FDsk6PHLWX4dG_jsRRecPiOhM"
@@ -119,3 +119,51 @@ for more information on how to make your docker image available to Kalix.
 Finally, you can use the [Kalix Console](https://console.kalix.io)
 to create a Kalix project and then deploy your service into it
 through the `kalix` CLI. 
+
+## Auth0
+
+Login to Kalix
+```shell
+kalix auth login
+```
+Create a Kalix project
+```shell
+kalix projects new developer-test-01 "DeveloperTest01" --region=gcp-us-east1 --organization=miguelemosreverte
+```
+>   NAME                DESCRIPTION       ID                                     OWNER               REGION            
+    developer-test-01   DeveloperTest01   d7fb8a8f-ffdf-426d-8754-4a8a210781dc   miguelemosreverte   gcp-us-east1
+
+    'developer-test-01' is now the currently active project.
+
+Create an application in Auth0 so that you can retrieve the .pem like:
+
+```shell
+curl https://dev-hrbmijutnc83oxoe.us.auth0.com/pem > auth0.pem
+```
+
+Extract the public key:
+
+```shell
+openssl x509 -pubkey -noout -in auth0.pem > auth0.pubkey.pem
+```
+
+Now we can configure that as a secret in our Kalix app:
+
+```shell
+kalix secret create asymmetric auth0 --public-key auth0.pubkey.pem
+```
+> Secret 'auth0' created.
+
+```shell
+docker login
+```
+
+```shell
+sbt -Ddocker.username=miguelemos Docker/publish
+```
+
+```shell
+kalix service jwts add jwt-auth0 --key-id auth0 --algorithm RS256 --secret auth0 
+```
+
+kalix service jwts add jwt-auth0 --key-id auth0 --algorithm RS256 --secret auth0 --issuer https://dev-hrbmijutnc83oxoe.us.auth0.com/

@@ -1,6 +1,6 @@
-name := "customer-registry"
+name := "developer-test-01"
 
-organization := "customer"
+organization := "miguelemosreverte"
 organizationHomepage := Some(url("https://kalix.io"))
 licenses := Seq(("CC0", url("https://creativecommons.org/publicdomain/zero/1.0")))
 
